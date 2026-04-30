@@ -66,11 +66,72 @@ async function initDb() {
       content TEXT NOT NULL,
       created_at TEXT DEFAULT (datetime('now'))
     );
-  `);
+`);
 
   _save();
   _wrapper = _makeWrapper();
+  
+  // Seed demo data on fresh database
+  if (!fs.existsSync(DB_PATH)) {
+    _seedDemoData();
+  }
+  
   return _wrapper;
+}
+
+function _seedDemoData() {
+  const bcrypt = require('bcryptjs');
+  const { v4: uuidv4 } = require('uuid');
+  
+  const adminId = uuidv4();
+  const memberId = uuidv4();
+  const projectId = uuidv4();
+  
+  // Create demo admin
+  _db.run(
+    'INSERT INTO users (id, name, email, password, avatar_color) VALUES (?, ?, ?, ?, ?)',
+    [adminId, 'Admin User', 'admin@example.com', bcrypt.hashSync('admin123', 10), '#6366f1']
+  );
+  
+  // Create demo member
+  _db.run(
+    'INSERT INTO users (id, name, email, password, avatar_color) VALUES (?, ?, ?, ?, ?)',
+    [memberId, 'Demo Member', 'member@example.com', bcrypt.hashSync('member123', 10), '#10b981']
+  );
+  
+  // Create demo project
+  _db.run(
+    'INSERT INTO projects (id, name, description, color, owner_id) VALUES (?, ?, ?, ?, ?)',
+    [projectId, 'Demo Project', 'This is a demo project for testing', '#6366f1', adminId]
+  );
+  
+  // Add admin as project owner
+  _db.run(
+    'INSERT INTO project_members (id, project_id, user_id, role) VALUES (?, ?, ?, ?)',
+    [uuidv4(), projectId, adminId, 'admin']
+  );
+  
+  // Add member to project
+  _db.run(
+    'INSERT INTO project_members (id, project_id, user_id, role) VALUES (?, ?, ?, ?)',
+    [uuidv4(), projectId, memberId, 'member']
+  );
+  
+  // Create demo tasks
+  const task1Id = uuidv4();
+  const task2Id = uuidv4();
+  
+  _db.run(
+    'INSERT INTO tasks (id, title, description, status, priority, project_id, assignee_id, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [task1Id, 'Welcome Task', 'Welcome to your task manager!', 'todo', 'high', projectId, adminId, adminId]
+  );
+  
+  _db.run(
+    'INSERT INTO tasks (id, title, description, status, priority, project_id, assignee_id, creator_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [task2Id, 'Another Task', 'This is another demo task', 'in-progress', 'medium', projectId, memberId, adminId]
+  );
+  
+  console.log('Demo data seeded: admin@example.com / admin123, member@example.com / member123');
 }
 
 function _save() {
