@@ -44,3 +44,52 @@ Node.js
 Express.js
 JSON Web Tokens (JWT)
 LowDB (JSON-based database)
+
+
+📦 Installation & Setup
+🔹 Clone the Repository
+git clone https://github.com/YOUR_USERNAME/taskflow.git
+cd taskflow
+
+
+
+🔹 Install Dependencies
+# Backend
+cd backend
+npm install
+# Frontend
+cd ../frontend
+npm install
+
+🚀 Running Locally
+
+🔻 Terminal 1 — Start Backend
+cd backend
+export JWT_SECRET=devsecret   # For Git Bash / Linux
+node server.js
+
+👉 For Windows CMD:
+set JWT_SECRET=devsecret && node server.js
+
+🔻 Terminal 2 — Start Frontend
+cd frontend
+npm run dev
+
+
+taskflow-fullstack/
+│
+├── backend/
+│   ├── server.js
+│   ├── db.js
+│   ├── middleware/
+│   │   └── auth.js
+│
+├── frontend/
+│   ├── src/
+│   │   ├── Login.jsx
+│   │   ├── Signup.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── api.js
+│   │   └── router.jsx
+│
+└── README.md
