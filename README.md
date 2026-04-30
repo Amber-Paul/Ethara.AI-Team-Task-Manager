@@ -4,37 +4,37 @@ TaskFlow is a full-stack web application designed to help users manage projects,
 
 Built with a modern frontend and a lightweight backend, this project is ideal for academic submissions, demos, and beginner full-stack development practice.
 
-✨ Features  
+**✨ Features**  
 
-🔐 Authentication
+**🔐 Authentication**
 Secure Signup & Login
 JWT-based authentication
 Token stored in browser for session handling
 
-👥 Role-Based Access Control
+**👥 Role-Based Access Control**
 Two roles: Admin and Member
 Admin can manage projects
 Members can work on assigned tasks
 
-📁 Project Management
+**📁 Project Management**
 Create and view projects
 Assign ownership
 
-✅ Task Management
+**✅ Task Management**
 Create tasks
 Assign tasks to users
 Track task status
 
-📊 Dashboard
+**📊 Dashboard**
 View all tasks dynamically
 Real-time updates from backend
 
-🎨 UI/UX
+**🎨 UI/UX**
 Apple-style clean interface
 Responsive and minimal design
 Smooth navigation between pages
 
-🛠️ Tech Stack
+**🛠️ Tech Stack**
 Frontend
 React (Vite)
 Axios
@@ -46,7 +46,7 @@ JSON Web Tokens (JWT)
 LowDB (JSON-based database)
 
 
-📦 Installation & Setup
+**📦 Installation & Setup**
 🔹 Clone the Repository
 git clone https://github.com/YOUR_USERNAME/taskflow.git
 cd taskflow
@@ -54,14 +54,14 @@ cd taskflow
 
 
 🔹 Install Dependencies
-# Backend
+Backend
 cd backend
 npm install
-# Frontend
+Frontend
 cd ../frontend
 npm install
 
-🚀 Running Locally
+**🚀 Running Locally**
 
 🔻 Terminal 1 — Start Backend
 cd backend
@@ -75,7 +75,7 @@ set JWT_SECRET=devsecret && node server.js
 cd frontend
 npm run dev
 
-
+****
 taskflow-fullstack/
 │
 ├── backend/
